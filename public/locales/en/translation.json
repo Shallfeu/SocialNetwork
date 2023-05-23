@@ -10,5 +10,9 @@
   "throw error": "throw error",
   "Главная": "Main",
   "О сайте": "About us",
-  "Переключить": "Переключить"
+  "Переключить": "Переключить",
+  "Lang": "English",
+  "ShortLang": "EN",
+  "main": "Home",
+  "about": "About us"
 }
