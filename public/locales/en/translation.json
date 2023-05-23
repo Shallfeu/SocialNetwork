@@ -14,5 +14,6 @@
   "Lang": "English",
   "ShortLang": "EN",
   "main": "Home",
-  "about": "About us"
+  "about": "About us",
+  "authorize": "Sign In"
 }
