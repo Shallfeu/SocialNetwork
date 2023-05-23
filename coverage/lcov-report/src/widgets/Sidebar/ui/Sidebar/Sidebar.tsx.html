@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
@@ -101,7 +101,34 @@
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -122,6 +149,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,14 +185,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { classNames } from 'shared/lib/classNames/classNames';
 import { useState } from 'react';
-import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
-import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher';
-import { Button } from 'shared/ui/Button/Button';
+import { LangSwitcher } from 'widgets/LangSwitcher/LangSwitcher';
+import { Button, ButtonSize, ThemeButton } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
+import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+&nbsp;
+import AboutIcon from 'shared/assets/icons/about.svg';
+import MainIcon from 'shared/assets/icons/main.svg';
 import cls from './Sidebar.module.scss';
 &nbsp;
 interface SidebarProps {
-    className?: string;
+    className?: string
 }
 &nbsp;
 export const Sidebar = ({ className }: SidebarProps) =&gt; {
@@ -165,14 +214,31 @@ export const Sidebar = ({ className }: SidebarProps) =&gt; {
             className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
         &gt;
             &lt;Button
+                theme={ThemeButton.BACKGROUND_INVERTED}
+                square
+                size={ButtonSize.L}
                 data-testid="sidebar-toggle"
                 onClick={onToggle}
+                className={cls.collapseBtn}
             &gt;
-                {t('Переключить')}
+                {collapsed ? '&gt;' : '&lt;'}
             &lt;/Button&gt;
+&nbsp;
+            &lt;div className={cls.items}&gt;
+                &lt;AppLink theme={AppLinkTheme.INVERTED} to={RoutePath.main} className={cls.item}&gt;
+                    &lt;MainIcon className={cls.icon} /&gt;
+                    &lt;span className={cls.link}&gt;{t('main')}&lt;/span&gt;
+                &lt;/AppLink&gt;
+&nbsp;
+                &lt;AppLink theme={AppLinkTheme.INVERTED} to={RoutePath.about} className={cls.item}&gt;
+                    &lt;AboutIcon className={cls.icon} /&gt;
+                    &lt;span className={cls.link}&gt;{t('about')}&lt;/span&gt;
+                &lt;/AppLink&gt;
+            &lt;/div&gt;
+&nbsp;
             &lt;div className={cls.switchers}&gt;
                 &lt;ThemeSwitcher /&gt;
-                &lt;LangSwitcher className={cls.lang} /&gt;
+                &lt;LangSwitcher short={collapsed} className={cls.lang} /&gt;
             &lt;/div&gt;
         &lt;/div&gt;
     );
@@ -184,7 +250,7 @@ export const Sidebar = ({ className }: SidebarProps) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue May 23 2023 10:10:50 GMT+0300 (Moscow Standard Time)
+                at Tue May 23 2023 17:45:56 GMT+0300 (Moscow Standard Time)
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>
