@@ -15,6 +15,8 @@ module.exports = {
     },
     plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
     rules: {
+        'no-undef': 'warn',
+        'no-param-reassign': 'off',
         'implicit-arrow-linebreak': 'off',
         'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
         'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
@@ -53,6 +55,7 @@ module.exports = {
             files: ['**/src/**/*.test.{ts,tsx}'],
             rules: {
                 'i18next/no-literal-string': 'off',
+                'no-undef': 'off',
             },
         },
     ],
