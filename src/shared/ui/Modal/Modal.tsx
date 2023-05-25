@@ -7,7 +7,7 @@ import {
     KeyboardEvent,
     useCallback,
 } from 'react';
-
+import { useTheme } from 'app/providers/ThemeProvider';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Modal.module.scss';
 import { Portal } from '../Portal/Portal';
