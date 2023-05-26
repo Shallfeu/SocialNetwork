@@ -7,7 +7,6 @@ import {
     KeyboardEvent,
     useCallback,
 } from 'react';
-import { useTheme } from 'app/providers/ThemeProvider';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Modal.module.scss';
 import { Portal } from '../Portal/Portal';
@@ -26,6 +25,7 @@ export const Modal = (props: ModalProps) => {
 
     const [isClosing, setIsClosing] = useState(false);
     const timerRef = useRef<ReturnType<typeof setTimeout>>();
+    const [isOpening, setIsOpening] = useState(false);
 
     const closeHandler = useCallback(() => {
         if (onClose) {
@@ -49,18 +49,26 @@ export const Modal = (props: ModalProps) => {
     );
 
     useEffect(() => {
-        if (isOpen) window.addEventListener('keydown', (e: any) => onKeyDown(e));
+        if (isOpen) {
+            timerRef.current = setTimeout(() => {
+                setIsOpening(true);
+            }, 0);
+            window.addEventListener('keydown', (e: any) => onKeyDown(e));
+        }
 
         return () => {
+            setIsOpening(false);
             clearTimeout(timerRef.current);
             window.removeEventListener('keydown', (e: any) => onKeyDown(e));
         };
     }, [isOpen, onKeyDown]);
 
     const mods: Record<string, boolean> = {
-        [cls.opened]: isOpen,
+        [cls.opened]: isOpening,
         [cls.isClosing]: isClosing,
     };
+
+    if (!isOpen) return null;
 
     return (
         <Portal>

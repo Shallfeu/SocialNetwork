@@ -15,5 +15,8 @@
   "ShortLang": "РУ",
   "main": "Главная",
   "about": "О сайте",
-  "authorize": "Войти"
+  "authorize": "Войти",
+  "enter": "Войти",
+  "login": "Логин",
+  "password": "Пароль"
 }

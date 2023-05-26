@@ -15,6 +15,8 @@ module.exports = {
     },
     plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
     rules: {
+        'jsx-a11y/no-autofocus': 'off',
+        'arrow-body-style': 'off',
         'no-undef': 'warn',
         'no-param-reassign': 'off',
         'implicit-arrow-linebreak': 'off',

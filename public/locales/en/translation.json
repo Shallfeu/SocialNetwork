@@ -15,5 +15,8 @@
   "ShortLang": "EN",
   "main": "Home",
   "about": "About us",
-  "authorize": "Sign In"
+  "authorize": "Sign In",
+  "enter": "Enter",
+  "login": "Login",
+  "password": "Password"
 }
