@@ -12,7 +12,11 @@ const ThemeProvider: FC<ThemeProviderProps> = (props) => {
     const [theme, setTheme] = useState<Theme>(inititalTheme || defaultTheme);
 
     useEffect(() => {
-        document.body.className = theme;
+        document.body.classList.add(theme);
+
+        return () => {
+            document.body.classList.remove(theme);
+        };
     }, [theme]);
 
     const defaultProps = useMemo(
