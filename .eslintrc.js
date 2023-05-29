@@ -15,6 +15,7 @@ module.exports = {
     },
     plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
     rules: {
+        'react/jsx-no-useless-fragment': 'off',
         'jsx-a11y/no-autofocus': 'off',
         'arrow-body-style': 'off',
         'no-undef': 'warn',
@@ -41,7 +42,7 @@ module.exports = {
         'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',
         'i18next/no-literal-string': [
-            'error',
+            'warn',
             {
                 markupOnly: true,
                 ignoreAttribute: ['data-testid', 'to'],

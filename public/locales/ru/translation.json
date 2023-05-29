@@ -18,5 +18,8 @@
   "authorize": "Войти",
   "enter": "Войти",
   "login": "Логин",
-  "password": "Пароль"
+  "password": "Пароль",
+  "Auth form": "Форма авторизации",
+  "auth error message": "Вы ввели неверный логин или пароль",
+  "exit": "Выйти"
 }

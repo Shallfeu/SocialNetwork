@@ -1,10 +1,13 @@
 {
   "About": "About",
+  "Auth form": "Auth form",
   "Lang": "Lang",
   "ShortLang": "ShortLang",
   "about": "about",
+  "auth error message": "",
   "authorize": "authorize",
   "enter": "enter",
+  "exit": "exit",
   "login": "login",
   "main": "main",
   "password": "password",
