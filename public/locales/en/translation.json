@@ -21,5 +21,6 @@
   "password": "Password",
   "Auth form": "Authorization form",
   "auth error message": "You enter wrong password or login",
-  "exit": "Sign out"
+  "exit": "Sign out",
+  "profile": "Profile"
 }

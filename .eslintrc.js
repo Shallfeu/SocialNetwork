@@ -15,6 +15,7 @@ module.exports = {
     },
     plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
     rules: {
+        'operator-linebreak': 'off',
         'react/jsx-no-useless-fragment': 'off',
         'jsx-a11y/no-autofocus': 'off',
         'arrow-body-style': 'off',
