@@ -20,10 +20,10 @@ import cls from './LoginForm.module.scss';
 
 export interface LoginFormProps {
     className?: string;
-    onSuccess?: () => void;
+    onSuccess: () => void;
 }
 
-const initialReducers: ReducersList = {
+const reducers: ReducersList = {
     loginForm: loginReducer,
 };
 
@@ -59,7 +59,7 @@ const LoginForm = memo((props: LoginFormProps) => {
     }, [dispatch, username, password, onSuccess]);
 
     return (
-        <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
+        <DynamicModuleLoader removeAfterUnmount reducers={reducers}>
             <div className={classNames(cls.LoginForm, {}, [className])}>
                 <Text title={t('Auth form')} />
                 {error && <Text text={t('auth error message')} theme={TextTheme.ERROR} />}

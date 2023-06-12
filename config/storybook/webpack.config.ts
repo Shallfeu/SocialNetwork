@@ -30,7 +30,7 @@ export default (props: { config: webpack.Configuration }) => {
     });
     config.module.rules.push(buildCssLoader(true));
 
-    config.plugins?.push(new DefinePlugin({ __IS_DEV__: true }));
+    config.plugins?.push(new DefinePlugin({ __IS_DEV__: true, __API__: '' }));
 
     return config;
 };

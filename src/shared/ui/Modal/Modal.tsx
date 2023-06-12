@@ -7,7 +7,7 @@ import {
     KeyboardEvent,
     useCallback,
 } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { Mods, classNames } from 'shared/lib/classNames/classNames';
 import cls from './Modal.module.scss';
 import { Portal } from '../Portal/Portal';
 
@@ -24,7 +24,7 @@ export const Modal = (props: ModalProps) => {
     const { className, children, isOpen, onClose } = props;
 
     const [isClosing, setIsClosing] = useState(false);
-    const timerRef = useRef<ReturnType<typeof setTimeout>>();
+    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const [isOpening, setIsOpening] = useState(false);
 
     const closeHandler = useCallback(() => {
@@ -58,12 +58,12 @@ export const Modal = (props: ModalProps) => {
 
         return () => {
             setIsOpening(false);
-            clearTimeout(timerRef.current);
+            if (timerRef.current) clearTimeout(timerRef.current);
             window.removeEventListener('keydown', (e: any) => onKeyDown(e));
         };
     }, [isOpen, onKeyDown]);
 
-    const mods: Record<string, boolean> = {
+    const mods: Mods = {
         [cls.opened]: isOpening,
         [cls.isClosing]: isClosing,
     };

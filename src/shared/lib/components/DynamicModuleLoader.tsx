@@ -25,15 +25,15 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (
     const dispatch = useDispatch();
 
     useEffect(() => {
-        Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
-            store.reducerManager.add(name, reducer);
+        Object.entries(reducers).forEach(([name, reducer]) => {
+            store.reducerManager.add(name as StateSchemaKey, reducer);
             dispatch({ type: `@INIT ${name} reducer` });
         });
 
         return () => {
-            Object.entries(reducers).forEach(([name, _]: ReducersListEntry) => {
+            Object.entries(reducers).forEach(([name, _]) => {
                 if (removeAfterUnmount) {
-                    store.reducerManager.remove('loginForm');
+                    store.reducerManager.remove(name as StateSchemaKey);
                     dispatch({ type: `@DESTROY ${name} reducer` });
                 }
             });

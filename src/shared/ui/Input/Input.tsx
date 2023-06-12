@@ -24,7 +24,7 @@ export const Input = memo((props: InputProps) => {
         onChange,
         ...otherProps
     } = props;
-    const inpRef = useRef<HTMLInputElement>();
+    const inpRef = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
         if (autoFocus) inpRef.current?.focus();
