@@ -39,7 +39,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -115,16 +115,7 @@
 <a name='L50'></a><a href='#L50'>50</a>
 <a name='L51'></a><a href='#L51'>51</a>
 <a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L53'></a><a href='#L53'>53</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,7 +132,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -166,6 +156,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -176,33 +167,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { classNames } from 'shared/lib/classNames/classNames';
-import { useState } from 'react';
-import { LangSwitcher } from 'widgets/LangSwitcher/LangSwitcher';
-import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
-import { useTranslation } from 'react-i18next';
-import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
-import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { memo, useState } from 'react';
 &nbsp;
-import AboutIcon from 'shared/assets/icons/about.svg';
-import MainIcon from 'shared/assets/icons/main.svg';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { LangSwitcher } from 'widgets/LangSwitcher';
+import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
+&nbsp;
+import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
+import { SideBarItemsList } from 'widgets/Sidebar/model/item';
+&nbsp;
 import cls from './Sidebar.module.scss';
+import { SideBarItem } from '../SideBarItem/SideBarItem';
 &nbsp;
 interface SidebarProps {
     className?: string;
 }
 &nbsp;
-export const Sidebar = ({ className }: SidebarProps) =&gt; {
+export const Sidebar = memo(({ className }: SidebarProps) =&gt; {
     const [collapsed, setCollapsed] = useState(false);
-    const { t } = useTranslation();
 &nbsp;
     const onToggle = () =&gt; {
         setCollapsed((prev) =&gt; !prev);
@@ -225,15 +207,9 @@ export const Sidebar = ({ className }: SidebarProps) =&gt; {
             &lt;/Button&gt;
 &nbsp;
             &lt;div className={cls.items}&gt;
-                &lt;AppLink theme={AppLinkTheme.INVERTED} to={RoutePath.main} className={cls.item}&gt;
-                    &lt;MainIcon className={cls.icon} /&gt;
-                    &lt;span className={cls.link}&gt;{t('main')}&lt;/span&gt;
-                &lt;/AppLink&gt;
-&nbsp;
-                &lt;AppLink theme={AppLinkTheme.INVERTED} to={RoutePath.about} className={cls.item}&gt;
-                    &lt;AboutIcon className={cls.icon} /&gt;
-                    &lt;span className={cls.link}&gt;{t('about')}&lt;/span&gt;
-                &lt;/AppLink&gt;
+                {SideBarItemsList.map((item) =&gt; (
+                    &lt;SideBarItem key={item.path} item={item} collapsed={collapsed} /&gt;
+                ))}
             &lt;/div&gt;
 &nbsp;
             &lt;div className={cls.switchers}&gt;
@@ -242,7 +218,7 @@ export const Sidebar = ({ className }: SidebarProps) =&gt; {
             &lt;/div&gt;
         &lt;/div&gt;
     );
-};
+});
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -250,7 +226,7 @@ export const Sidebar = ({ className }: SidebarProps) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed May 24 2023 09:39:58 GMT+0300 (Moscow Standard Time)
+                at Mon Jun 12 2023 16:53:23 GMT+0300 (Moscow Standard Time)
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>
