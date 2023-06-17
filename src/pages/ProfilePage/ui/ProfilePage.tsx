@@ -1,5 +1,6 @@
 import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import {
     ProfileCard,
@@ -10,12 +11,15 @@ import {
     profileActions,
     profileReducer,
     getProfileForm,
+    getProfileValidateErrors,
 } from 'entities/Profile';
+import { ValidateProfileError } from 'entities/Profile/model/types/profile';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
 
 import cls from './ProfilePage.module.scss';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
@@ -31,12 +35,22 @@ interface ProfilePageProps {
 const ProfilePage = memo((props: ProfilePageProps) => {
     const { className } = props;
     const dispatch = useAppDispatch();
+    const { t } = useTranslation('profile');
 
     const readonly = useSelector(getProfileReadonly);
 
     const formData = useSelector(getProfileForm);
     const error = useSelector(getProfileError);
     const isLoading = useSelector(getProfileIsLoading);
+    const validateErrors = useSelector(getProfileValidateErrors);
+
+    const validateErrorTranslate = {
+        [ValidateProfileError.SERVER_ERROR]: t('server_error'),
+        [ValidateProfileError.NO_DATA]: t('no_data'),
+        [ValidateProfileError.INCORRECT_USER_DATA]: t('incor_data'),
+        [ValidateProfileError.INCORRECT_AGE]: t('incor_age'),
+        [ValidateProfileError.INCORRECT_COUNTRY]: t('incor_country'),
+    };
 
     useEffect(() => {
         dispatch(fetchProfileData());
@@ -102,6 +116,15 @@ const ProfilePage = memo((props: ProfilePageProps) => {
         <DynamicModuleLoader removeAfterUnmount reducers={reducers}>
             <div className={classNames(cls.ProfilePage, {}, [className])}>
                 <ProfilePageHeader />
+
+                {validateErrors?.length &&
+                    validateErrors.map((error) => (
+                        <Text
+                            key={error}
+                            theme={TextTheme.ERROR}
+                            text={validateErrorTranslate[error]}
+                        />
+                    ))}
 
                 <ProfileCard
                     onChangeFirstName={changeFirstNameHandler}

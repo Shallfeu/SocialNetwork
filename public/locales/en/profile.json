@@ -12,5 +12,10 @@
   "avatar": "Your avatar",
   "username": "Your username",
   "currency": "Currency",
-  "country": "Your country"
+  "country": "Your country",
+  "server_error": "Server error occured",
+  "no_data": "There is no data ",
+  "incor_data": "Incorrect user data",
+  "incor_age": "Incorrect age data",
+  "incor_country": "Incorrect country data"
 }
