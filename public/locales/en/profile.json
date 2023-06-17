@@ -2,5 +2,15 @@
   "edit": "Edit profile data",
   "profile": "Profile",
   "name": "Your name",
-  "surname": "Your surname"
+  "surname": "Your surname",
+  "error": "Some error occured while fetching profile data",
+  "try_to_reload": "Try to reload the page",
+  "cancel": "Cancel",
+  "save": "Save",
+  "age": "Your age",
+  "city": "Your city",
+  "avatar": "Your avatar",
+  "username": "Your username",
+  "currency": "Currency",
+  "country": "Your country"
 }

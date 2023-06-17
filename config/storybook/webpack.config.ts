@@ -1,3 +1,4 @@
+// @ts-nocheck
 import webpack, { DefinePlugin, RuleSetRule } from 'webpack';
 import path from 'path';
 import { buildCssLoader } from '../build/loaders/buildCssLoader';
