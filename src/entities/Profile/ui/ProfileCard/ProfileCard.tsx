@@ -119,13 +119,6 @@ export const ProfileCard = (props: ProfileCardProps) => {
                 placeholder={t('username')}
                 readonly={readonly}
             />
-            <Input
-                onChange={onChangeAvatar}
-                className={cls.input}
-                value={data?.avatar}
-                placeholder={t('avatar')}
-                readonly={readonly}
-            />
 
             <CurrencySelect
                 className={cls.input}
