@@ -6,6 +6,7 @@
         "custom-property-empty-line-before": null,
         "string-quotes": null,
         "declaration-empty-line-before": null,
-        "color-hex-length": null
+        "color-hex-length": null,
+        "declaration-colon-newline-after": null
     }
 }
