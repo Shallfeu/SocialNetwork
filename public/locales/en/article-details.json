@@ -1,5 +1,7 @@
 {
   "article-not-found": "Article was not found ",
   "article-error": "Some error occured while truing to reach article",
-  "comments": "Comments"
+  "comments": "Comments",
+  "comment": "Enter your comment here",
+  "send": "Send"
 }
