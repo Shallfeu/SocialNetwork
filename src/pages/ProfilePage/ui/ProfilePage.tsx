@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
+import { Page } from 'shared/ui/Page/Page';
 import {
     ProfileCard,
     fetchProfileData,
@@ -118,7 +119,7 @@ const ProfilePage = memo((props: ProfilePageProps) => {
 
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={reducers}>
-            <div className={classNames(cls.ProfilePage, {}, [className])}>
+            <Page className={classNames(cls.ProfilePage, {}, [className])}>
                 <ProfilePageHeader />
 
                 {validateErrors?.length &&
@@ -144,7 +145,7 @@ const ProfilePage = memo((props: ProfilePageProps) => {
                     error={error}
                     readonly={readonly}
                 />
-            </div>
+            </Page>
         </DynamicModuleLoader>
     );
 });

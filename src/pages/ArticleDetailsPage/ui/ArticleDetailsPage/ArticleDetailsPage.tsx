@@ -14,6 +14,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { AddNewCommentForm } from 'features/AddNewComment';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { Page } from 'shared/ui/Page/Page';
 
 import {
     articleDetailsCommentReducer,
@@ -65,7 +66,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
+            <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
                 <Button onClick={onBackToList} theme={ButtonTheme.OUTLINE}>
                     {t('back-to-list')}
                 </Button>
@@ -75,7 +76,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 
                 <AddNewCommentForm onSendComment={createCommentHandler} />
                 <CommentList isLoading={commentIsLoading} comments={comments} />
-            </div>
+            </Page>
         </DynamicModuleLoader>
     );
 };

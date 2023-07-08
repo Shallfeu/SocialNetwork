@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
+import { Page } from 'shared/ui/Page/Page';
 
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './MainPage.module.scss';
@@ -11,7 +12,7 @@ interface MainPageProps {
 const MainPage = memo((props: MainPageProps) => {
     const { className } = props;
     const { t } = useTranslation();
-    return <div className={classNames(cls.MainPage, {}, [className])}>123</div>;
+    return <Page className={classNames(cls.MainPage, {}, [className])}>123</Page>;
 });
 
 export default MainPage;
