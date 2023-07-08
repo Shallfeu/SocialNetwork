@@ -3,5 +3,6 @@
   "article-error": "Some error occured while truing to reach article",
   "comments": "Comments",
   "comment": "Enter your comment here",
-  "send": "Send"
+  "send": "Send",
+  "back-to-list": "Back to list"
 }

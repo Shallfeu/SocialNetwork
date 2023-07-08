@@ -15,6 +15,7 @@ module.exports = {
     },
     plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
     rules: {
+        'react/no-array-index-key': 'off',
         'react/jsx-wrap-multilines': 'off',
         'operator-linebreak': 'off',
         'react/jsx-no-useless-fragment': 'off',

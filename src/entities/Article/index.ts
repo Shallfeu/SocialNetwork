@@ -4,3 +4,5 @@ export { ArticleDetailSchema } from './model/types/articleDetailsSchema';
 export { articleDetailsActions, articleDetailsReducer } from './model/slice/articleSlice';
 export { fetchArticleById } from './model/services/fetchArticleById/fetchArticleById';
 export { getArticleDetailsData } from './model/selectors/articleDetails';
+export { ArticleView } from './model/types/article';
+export { ArticleList } from './ui/ArticleList/ArticleList';
