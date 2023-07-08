@@ -7,7 +7,6 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { fetchArticlesList } from 'pages/ArticlesPage/module/services/fetchArticlesList/fetchArticlesList';
 import { Page } from 'shared/ui/Page/Page';
 
 import {
@@ -17,12 +16,11 @@ import {
 } from '../../module/slice/articlesPageSlice';
 import cls from './ArticlesPage.module.scss';
 import {
-    getArticlesPageHasMore,
     getArticlesPageIsLoading,
-    getArticlesPageNum,
     getArticlesPageView,
 } from '../../module/selectors/articlesPageSelectors';
 import { fetchNextPartofArticles } from '../../module/services/fetchNextPartOfArticles/fetchNextPartOfArticles';
+import { initArticlesPage } from '../../module/services/initArticlesPage/initArticlesPage';
 
 interface ArticlesPageProps {
     className?: string;
@@ -40,8 +38,6 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     const articles = useSelector(getArticles.selectAll);
     const isLoading = useSelector(getArticlesPageIsLoading);
     const view = useSelector(getArticlesPageView);
-    const page = useSelector(getArticlesPageNum);
-    const hasMore = useSelector(getArticlesPageHasMore);
 
     const onChangeView = useCallback(
         (view: ArticleView) => {
@@ -55,8 +51,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     }, [dispatch]);
 
     useInitialEffect(() => {
-        dispatch(articlesPageActions.initState());
-        dispatch(fetchArticlesList({ page: 1 }));
+        dispatch(initArticlesPage());
     });
 
     return (
