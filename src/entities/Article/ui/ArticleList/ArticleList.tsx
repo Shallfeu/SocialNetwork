@@ -1,7 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 
+import { Text } from 'shared/ui/Text/Text';
 import { classNames } from 'shared/lib/classNames/classNames';
+
 import cls from './ArticleList.module.scss';
 import { ArticleView, Article } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
@@ -30,6 +32,14 @@ export const ArticleList = memo((props: ArticleListProps) => {
             <ArticleListItem key={article.id} className={cls.card} article={article} view={view} />
         );
     };
+
+    if (!isLoading && !articles.length) {
+        return (
+            <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
+                <Text title={t('no-such-article')} />
+            </div>
+        );
+    }
 
     return (
         <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>

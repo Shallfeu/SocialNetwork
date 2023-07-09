@@ -11,12 +11,13 @@ import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
 import { AddNewCommentSchema } from 'features/AddNewComment';
 import { LoginSchema } from 'features/AuthByUserName';
+import { ScrollSaveSchema } from 'features/ScrollSave';
 import { ArticleDetailsCommentSchema } from 'pages/ArticleDetailsPage';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
-import { NavigateOptions, To } from 'react-router-dom';
 
 export interface StateSchema {
     user: UserSchema;
+    saveScroll: ScrollSaveSchema;
 
     // async
     loginForm?: LoginSchema;
