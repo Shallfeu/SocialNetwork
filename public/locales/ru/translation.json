@@ -27,5 +27,6 @@
   "economy-tab": "Экономика",
   "science-tab": "НаУка",
   "it-tab": "ИТ",
-  "no-such-article": "Таких статей еще нет"
+  "no-such-article": "Таких статей еще нет",
+  "create-article": "Создать Статью"
 }

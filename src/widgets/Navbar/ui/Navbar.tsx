@@ -7,6 +7,9 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { LoginModal } from 'features/AuthByUserName';
 import { getUserAuthData, userActions } from 'entities/User';
+import { Text } from 'shared/ui/Text/Text';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 
 import cls from './Navbar.module.scss';
 
@@ -36,6 +39,16 @@ export const Navbar = memo((props: NavbarProps) => {
     if (authData) {
         return (
             <nav className={classNames(cls.Navbar, {}, [className])}>
+                <Text className={cls.appName} title="ULBITVAPP" />
+
+                <AppLink
+                    className={cls.createBtn}
+                    theme={AppLinkTheme.INVERTED}
+                    to={RoutePath.article_create}
+                >
+                    {t('create-article')}
+                </AppLink>
+
                 <Button onClick={onLogOut} theme={ButtonTheme.CLEAR_INVERTED} className={cls.links}>
                     {t('exit')}
                 </Button>
