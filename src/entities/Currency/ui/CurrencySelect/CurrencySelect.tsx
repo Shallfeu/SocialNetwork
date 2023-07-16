@@ -37,7 +37,7 @@ export const CurrencySelect = memo((props: CurrencySelectProps) => {
             label={t('currency')}
             value={value}
             readonly={readonly}
-            options={options}
+            items={options}
             className={classNames(cls.CurrenctSelect, {}, [className])}
         />
     );

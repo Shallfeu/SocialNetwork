@@ -1,80 +1,85 @@
-import { Listbox as HListbox } from '@headlessui/react';
-import { ReactNode } from 'react';
-
+import { Fragment, ReactNode } from 'react';
+import { Listbox as HListBox } from '@headlessui/react';
 import { classNames } from 'shared/lib/classNames/classNames';
-
-import cls from './Listbox.module.scss';
+import { DropdownDirection } from 'shared/types/ui';
+import { HStack } from '../Stack';
 import { Button } from '../Button/Button';
-import { Text } from '../Text/Text';
+import cls from './ListBox.module.scss';
 
-export interface ListboxItem {
+export interface ListBoxItem {
     value: string;
     content: ReactNode;
     disabled?: boolean;
 }
 
-type DropdownDirection = 'top' | 'bottom';
-
-export interface ListboxProps {
-    options: ListboxItem[];
-    value?: string;
-    onChange: <T extends string>(value: T) => void;
+interface ListBoxProps {
+    items?: ListBoxItem[];
     className?: string;
+    value?: string;
     defaultValue?: string;
+    onChange: (value: string) => void;
     readonly?: boolean;
     direction?: DropdownDirection;
     label?: string;
 }
 
-export const Listbox = (props: ListboxProps) => {
+const mapDirectionClass: Record<DropdownDirection, string> = {
+    'bottom left': cls.optionsBottomLeft,
+    'bottom right': cls.optionsBottomRight,
+    'top right': cls.optionsTopRight,
+    'top left': cls.optionsTopLeft,
+};
+
+export function Listbox(props: ListBoxProps) {
     const {
         className,
-        direction = 'top',
-        readonly,
-        defaultValue,
-        options,
+        items,
         value,
+        defaultValue,
         onChange,
+        readonly,
+        direction = 'bottom right',
         label,
     } = props;
 
-    const optionsClasses = [cls.options, cls[direction]];
+    const optionsClasses = [mapDirectionClass[direction]];
 
     return (
-        <HListbox
-            disabled={readonly}
-            as="div"
-            className={classNames(cls.Listbox, {}, [className])}
-            value={value}
-            onChange={onChange}
-        >
-            <div className={cls.controls}>
-                {label && <span className={cls.label}>{label}</span>}
-
-                <HListbox.Button className={cls.trigger}>
+        <HStack gap="4">
+            {label && <span>{`${label}>`}</span>}
+            <HListBox
+                disabled={readonly}
+                as="div"
+                className={classNames(cls.ListBox, {}, [className])}
+                value={value}
+                onChange={onChange}
+            >
+                <HListBox.Button className={cls.trigger}>
                     <Button disabled={readonly}>{value ?? defaultValue}</Button>
-                </HListbox.Button>
-            </div>
-
-            <HListbox.Options className={classNames('', {}, optionsClasses)}>
-                {options.map((option) => (
-                    <HListbox.Option
-                        className={classNames(
-                            cls.item,
-                            {
-                                [cls.active]: value === option.value,
-                                [cls.disabled]: option.disabled,
-                            },
-                            [],
-                        )}
-                        key={option.value}
-                        value={option.value}
-                        disabled={option.disabled}
-                    >
-                        {option.content}
-                    </HListbox.Option>
-                ))}
-            </HListbox.Options>
-        </HListbox>
+                </HListBox.Button>
+                <HListBox.Options className={classNames(cls.options, {}, optionsClasses)}>
+                    {items?.map((item) => (
+                        <HListBox.Option
+                            key={item.value}
+                            value={item.value}
+                            disabled={item.disabled}
+                            as={Fragment}
+                        >
+                            {({ active, selected }) => (
+                                <li
+                                    className={classNames(cls.item, {
+                                        [cls.active]: active,
+                                        [cls.disabled]: item.disabled,
+                                    })}
+                                >
+                                    {selected && '!!!'}
+                                    {item.content}
+                                </li>
+                            )}
+                        </HListBox.Option>
+                    ))}
+                </HListBox.Options>
+            </HListBox>
+        </HStack>
     );
-};
+}
