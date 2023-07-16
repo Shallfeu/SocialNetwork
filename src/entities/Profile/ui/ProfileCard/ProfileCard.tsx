@@ -8,6 +8,7 @@ import { Loader } from 'shared/ui/Loader/Loader';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Currency, CurrencySelect } from 'entities/Currency';
 import { Country, CountrySelect } from 'entities/Country';
+import { HStack, VStack } from 'shared/ui/Stack';
 
 import cls from './ProfileCard.module.scss';
 import { Profile } from '../../model/types/profile';
@@ -52,31 +53,39 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
     if (isLoading) {
         return (
-            <div className={classNames(cls.ProfileCard, {}, [className, cls.loading])}>
+            <HStack
+                justify="center"
+                max
+                className={classNames(cls.ProfileCard, {}, [className, cls.loading])}
+            >
                 <Loader />
-            </div>
+            </HStack>
         );
     }
 
     if (error) {
         return (
-            <div className={classNames(cls.ProfileCard, {}, [className, cls.error])}>
+            <HStack
+                justify="center"
+                max
+                className={classNames(cls.ProfileCard, {}, [className, cls.error])}
+            >
                 <Text
                     align={TextAlign.CENTER}
                     title={t('error')}
                     text={t('try_to_reload')}
                     theme={TextTheme.ERROR}
                 />
-            </div>
+            </HStack>
         );
     }
 
     return (
-        <div className={classNames(cls.ProfileCard, mods, [className])}>
+        <VStack gap="16" max className={classNames(cls.ProfileCard, mods, [className])}>
             {data?.avatar && (
-                <div className={cls.avatarWrapper}>
+                <HStack justify="center" max className={cls.avatarWrapper}>
                     <Avatar src={data?.avatar} alt="avatar" />
-                </div>
+                </HStack>
             )}
 
             <Input
@@ -133,6 +142,6 @@ export const ProfileCard = (props: ProfileCardProps) => {
                 value={data?.country}
                 onChange={onChangeCountry}
             />
-        </div>
+        </VStack>
     );
 };

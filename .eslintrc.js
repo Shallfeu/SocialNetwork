@@ -13,8 +13,10 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
+    plugins: ['ulbi-tv-plugin', 'react', '@typescript-eslint', 'i18next', 'react-hooks'],
     rules: {
+        'ulbi-tv-plugin/path-checker': 'warn',
+        'linebreak-style': 'off',
         'consistent-return': 'off',
         'function-paren-newline': 'off',
         'react/no-array-index-key': 'off',
