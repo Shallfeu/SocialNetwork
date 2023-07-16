@@ -38,7 +38,7 @@ export const Navbar = memo((props: NavbarProps) => {
 
     if (authData) {
         return (
-            <nav className={classNames(cls.Navbar, {}, [className])}>
+            <header className={classNames(cls.Navbar, {}, [className])}>
                 <Text className={cls.appName} title="ULBITVAPP" />
 
                 <AppLink
@@ -52,7 +52,7 @@ export const Navbar = memo((props: NavbarProps) => {
                 <Button onClick={onLogOut} theme={ButtonTheme.CLEAR_INVERTED} className={cls.links}>
                     {t('exit')}
                 </Button>
-            </nav>
+            </header>
         );
     }
 
