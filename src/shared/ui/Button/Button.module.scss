@@ -1,18 +1,16 @@
 .Button {
     cursor: pointer;
     color: var(--primary-color);
-    transition: 0.5s;
     padding: 6px 15px;
 
     &:hover {
-        opacity: 0.7;
-        fill-opacity: 0.7;
-        stroke-opacity: 0.7;
+        opacity: 0.8;
+        fill-opacity: 0.8;
+        stroke-opacity: 0.8;
     }
 }
 
-.clear,
-.clearInverted {
+.clear {
     padding: 0;
     border: none;
     background: none;
@@ -20,6 +18,10 @@
 }
 
 .clearInverted {
+    padding: 0;
+    border: none;
+    background: none;
+    outline: none;
     color: var(--inverted-primary-color);
 }
 
@@ -30,7 +32,7 @@
 }
 
 .outline_red {
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--red-light);
     color: var(--red-light);
     background: none;
 }
@@ -54,19 +56,16 @@
 .square.size_m {
     width: var(--font-line-m);
     height: var(--font-line-m);
-    font: var(--font-m);
 }
 
 .square.size_l {
     width: var(--font-line-l);
     height: var(--font-line-l);
-    font: var(--font-l);
 }
 
 .square.size_xl {
     width: var(--font-line-xl);
     height: var(--font-line-xl);
-    font: var(--font-xl);
 }
 
 .size_m {

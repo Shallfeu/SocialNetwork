@@ -1,24 +1,20 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { Listbox } from './ListBox';
+import { ListBox } from './ListBox';
 
 export default {
-    title: 'shared/Listbox',
-    component: Listbox,
+    title: 'shared/ListBox',
+    component: ListBox,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
     decorators: [
-        (Story) => (
-            <div style={{ padding: 100 }}>
-                <Story />
-            </div>
-        ),
+        (Story) => <div style={{ padding: 100 }}><Story /></div>,
     ],
-} as ComponentMeta<typeof Listbox>;
+} as ComponentMeta<typeof ListBox>;
 
-const Template: ComponentStory<typeof Listbox> = (args) => <Listbox {...args} />;
+const Template: ComponentStory<typeof ListBox> = (args) => <ListBox {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = {

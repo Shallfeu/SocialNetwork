@@ -1,4 +1,7 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+
+import { Text } from '../Text/Text';
 import { Card } from './Card';
 
 export default {
@@ -11,7 +14,7 @@ export default {
 
 const Template: ComponentStory<typeof Card> = (args) => <Card {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
-    children: 'Text',
+export const Normal = Template.bind({});
+Normal.args = {
+    children: <Text title="test" text="text text" />,
 };

@@ -30,32 +30,32 @@ export interface ArticleImageBlock extends ArticleBlockBase {
 
 export interface ArticleTextBlock extends ArticleBlockBase {
     type: ArticleBlockType.TEXT;
-    title?: string;
     paragraphs: string[];
+    title?: string;
 }
 
 export type ArticleBlock = ArticleCodeBlock | ArticleImageBlock | ArticleTextBlock;
 
 export enum ArticleType {
-    'ALL' = 'ALL',
-    'IT' = 'IT',
-    'SCIENCE' = 'SCIENCE',
-    'ECONOMY' = 'ECONOMY',
-}
-
-export interface Article {
-    id: string;
-    title: string;
-    subtitle: string;
-    user: User;
-    img: string;
-    views: number;
-    createdAt: string;
-    type: ArticleType[];
-    blocks: ArticleBlock[];
+    ALL = 'ALL',
+    IT = 'IT',
+    SCIENCE = 'SCIENCE',
+    ECONOMICS = 'ECONOMICS'
 }
 
 export enum ArticleView {
     BIG = 'BIG',
     SMALL = 'SMALL',
+}
+
+export interface Article {
+    id: string;
+    title: string;
+    user: User;
+    subtitle: string;
+    img: string;
+    views: number;
+    createdAt: string;
+    type: ArticleType[];
+    blocks: ArticleBlock[];
 }

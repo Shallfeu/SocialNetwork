@@ -1,3 +1,4 @@
+import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Select } from './Select';
 
@@ -7,18 +8,15 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-    args: {
-        to: '/',
-    },
 } as ComponentMeta<typeof Select>;
 
 const Template: ComponentStory<typeof Select> = (args) => <Select {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
+    label: 'Укажите значение',
     options: [
-        { value: '1', content: 'option 1' },
-        { value: '2', content: 'option 2' },
-        { value: '3', content: 'option 3' },
+        { value: '123', content: 'Первый пункт' },
+        { value: '1234', content: 'Второй пункт' },
     ],
 };

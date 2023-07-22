@@ -1,7 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/providers/ThemeProvider';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Input } from './Input';
 
 export default {
@@ -14,15 +12,8 @@ export default {
 
 const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
 
-export const Light = Template.bind({});
-Light.args = {
-    placeholder: 'Email',
-    value: 'email@email.email',
+export const Primary = Template.bind({});
+Primary.args = {
+    placeholder: 'Type text',
+    value: '123123',
 };
-
-export const Dark = Template.bind({});
-Dark.args = {
-    placeholder: 'Email',
-    value: 'email@email.email',
-};
-Dark.decorators = [ThemeDecorator(Theme.DARK)];

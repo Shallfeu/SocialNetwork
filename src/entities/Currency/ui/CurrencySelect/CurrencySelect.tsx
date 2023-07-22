@@ -1,11 +1,9 @@
-import { useTranslation } from 'react-i18next';
-import { memo, useCallback } from 'react';
-
-import { Listbox } from 'shared/ui/ListBox/ListBox';
 import { classNames } from 'shared/lib/classNames/classNames';
-
+import { useTranslation } from 'react-i18next';
+import { Select } from 'shared/ui/Select/Select';
+import { memo, useCallback } from 'react';
+import { ListBox, ListBoxItem } from 'shared/ui/ListBox/ListBox';
 import { Currency } from '../../model/types/currency';
-import cls from './CurrencySelect.module.scss';
 
 interface CurrencySelectProps {
     className?: string;
@@ -20,36 +18,25 @@ const options = [
     { value: Currency.USD, content: Currency.USD },
 ];
 
-export const CurrencySelect = memo((props: CurrencySelectProps) => {
-    const { className, onChange, value, readonly } = props;
-    const { t } = useTranslation('profile');
+export const CurrencySelect = memo(({
+    className, value, onChange, readonly,
+}: CurrencySelectProps) => {
+    const { t } = useTranslation();
 
-    const changeCurrencyHandler = useCallback(
-        (value: string) => {
-            onChange?.(value as Currency);
-        },
-        [onChange],
-    );
+    const onChangeHandler = useCallback((value: string) => {
+        onChange?.(value as Currency);
+    }, [onChange]);
 
     return (
-        <Listbox
-            onChange={changeCurrencyHandler}
-            label={t('currency')}
+        <ListBox
+            className={className}
             value={value}
-            readonly={readonly}
+            defaultValue={t('Укажите валюту')}
+            label={t('Укажите валюту')}
             items={options}
-            className={classNames(cls.CurrenctSelect, {}, [className])}
+            onChange={onChangeHandler}
+            readonly={readonly}
+            direction="top right"
         />
     );
-
-    // return (
-    //     <Select
-    //         className={classNames(cls.CurrenctSelect, {}, [className])}
-    //         options={options}
-    //         label={t('currency')}
-    //         value={value}
-    //         onChange={changeCurrencyHandler}
-    //         readonly={readonly}
-    //     />
-    // );
 });

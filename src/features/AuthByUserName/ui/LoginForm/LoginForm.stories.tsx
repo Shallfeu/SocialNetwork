@@ -1,8 +1,7 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/providers/ThemeProvider';
+import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
-
+import { PreloadedState } from '@reduxjs/toolkit';
 import LoginForm from './LoginForm';
 
 export default {
@@ -15,35 +14,20 @@ export default {
 
 const Template: ComponentStory<typeof LoginForm> = (args) => <LoginForm {...args} />;
 
-export const Light = Template.bind({});
-Light.args = {};
-Light.decorators = [
-    StoreDecorator({
-        loginForm: { username: '123', password: '123' },
-    }),
-];
+export const Primary = Template.bind({});
+Primary.args = {};
+Primary.decorators = [StoreDecorator({
+    loginForm: { username: '123', password: 'asd' },
+})];
 
 export const withError = Template.bind({});
 withError.args = {};
-withError.decorators = [
-    StoreDecorator({
-        loginForm: { username: '123', password: '123', error: 'ERROR' },
-    }),
-];
+withError.decorators = [StoreDecorator({
+    loginForm: { username: '123', password: 'asd', error: 'ERROR' },
+})];
 
 export const Loading = Template.bind({});
 Loading.args = {};
-Loading.decorators = [
-    StoreDecorator({
-        loginForm: { isLoading: true },
-    }),
-];
-
-export const Dark = Template.bind({});
-Dark.args = {};
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
-Dark.decorators = [
-    StoreDecorator({
-        loginForm: { username: '123', password: '123' },
-    }),
-];
+Loading.decorators = [StoreDecorator({
+    loginForm: { isLoading: true },
+})];

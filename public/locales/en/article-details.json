@@ -1,10 +1,6 @@
 {
-  "article-not-found": "Article was not found ",
-  "article-error": "Some error occured while truing to reach article",
-  "comments": "Comments",
-  "comment": "Enter your comment here",
-  "send": "Send",
-  "back-to-list": "Back to list",
-  "recommendations": "Recommendations",
-  "edit-article": "Edit"
+  "Статья не найдена": "Article not found",
+  "Комментарии": "Comments",
+  "Назад к списку": "Back to list",
+  "Рекомендуем": "Recommend"
 }

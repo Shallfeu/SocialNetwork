@@ -4,7 +4,11 @@ module.exports = {
         es2021: true,
         jest: true,
     },
-    extends: ['plugin:react/recommended', 'airbnb', 'plugin:i18next/recommended'],
+    extends: [
+        'plugin:react/recommended',
+        'airbnb',
+        'plugin:i18next/recommended',
+    ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
@@ -13,30 +17,21 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: ['ulbi-tv-plugin', 'react', '@typescript-eslint', 'i18next', 'react-hooks'],
+    plugins: [
+        'react',
+        '@typescript-eslint',
+        'i18next',
+        'react-hooks',
+        'ulbi-tv-plugin',
+    ],
     rules: {
-        'ulbi-tv-plugin/path-checker': 'warn',
-        'linebreak-style': 'off',
-        'consistent-return': 'off',
-        'function-paren-newline': 'off',
-        'react/no-array-index-key': 'off',
-        'react/jsx-wrap-multilines': 'off',
-        'operator-linebreak': 'off',
-        'react/jsx-no-useless-fragment': 'off',
-        'jsx-a11y/no-autofocus': 'off',
-        'arrow-body-style': 'off',
-        'no-undef': 'warn',
-        'no-param-reassign': 'off',
-        'implicit-arrow-linebreak': 'off',
-        'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
-        'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
-        'object-curly-newline': 'off',
-        'jsx-a11y/click-events-have-key-events': 'off',
-        'jsx-a11y/no-static-element-interactions': 'off',
         'react/jsx-indent': [2, 4],
         'react/jsx-indent-props': [2, 4],
-        indent: 'off',
-        'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
+        indent: [2, 4],
+        'react/jsx-filename-extension': [
+            2,
+            { extensions: ['.js', '.jsx', '.tsx'] },
+        ],
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
         'no-unused-vars': 'off',
@@ -49,13 +44,24 @@ module.exports = {
         'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',
         'i18next/no-literal-string': [
-            'off',
+            'error',
             {
                 markupOnly: true,
-                ignoreAttribute: ['data-testid', 'to'],
+                ignoreAttribute: [
+                    'as', 'role', 'data-testid', 'to', 'target', 'justify', 'align', 'direction', 'gap',
+                ],
             },
         ],
-        'max-len': ['error', { ignoreComments: true, code: 120 }],
+        'max-len': ['error', { ignoreComments: true, code: 125 }],
+        'jsx-a11y/no-static-element-interactions': 'off',
+        'jsx-a11y/click-events-have-key-events': 'off',
+        'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+        'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies,
+        'no-param-reassign': 'off',
+        'no-undef': 'off',
+        'react/no-array-index-key': 'off',
+        'arrow-body-style': 'off',
+        'ulbi-tv-plugin/path-checker': 'error',
     },
     globals: {
         __IS_DEV__: true,
@@ -64,10 +70,10 @@ module.exports = {
     },
     overrides: [
         {
-            files: ['**/src/**/*.test.{ts,tsx}'],
+            files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
             rules: {
                 'i18next/no-literal-string': 'off',
-                'no-undef': 'off',
+                'max-len': 'off',
             },
         },
     ],

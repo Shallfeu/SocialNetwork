@@ -1,39 +1,41 @@
-import {
-    AnyAction,
-    EnhancedStore,
-    ReducersMapObject,
-    Reducer,
-    CombinedState,
-} from '@reduxjs/toolkit';
-import { AxiosInstance } from 'axios';
-import { ArticleDetailSchema } from 'entities/Article';
-import { ProfileSchema } from 'entities/Profile';
+import { CounterSchema } from 'entities/Counter';
 import { UserSchema } from 'entities/User';
-import { AddNewCommentSchema } from 'features/AddNewComment';
-import { LoginSchema } from 'features/AuthByUserName';
-import { ScrollSaveSchema } from 'features/ScrollSave';
+import { LoginSchema } from 'features/AuthByUsername';
 import {
-    ArticleDetailsCommentSchema,
+    AnyAction, EnhancedStore, Reducer, ReducersMapObject,
+} from '@reduxjs/toolkit';
+import { CombinedState } from 'redux';
+import { AxiosInstance } from 'axios';
+import { To } from 'history';
+import { NavigateOptions } from 'react-router';
+import { ArticleDetailsSchema } from 'entities/Article';
+import {
+    ArticleDetailsCommentsSchema,
     ArticleDetailsPageSchema,
     ArticleDetailsRecommendationsSchema,
 } from 'pages/ArticleDetailsPage';
+import { AddCommentFormSchema } from 'features/addCommentForm';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
+import { UISchema } from 'features/UI';
+import { rtkApi } from 'shared/api/rtkApi';
+import { ProfileSchema } from 'features/editableProfileCard';
 
 export interface StateSchema {
+    counter: CounterSchema;
     user: UserSchema;
-    saveScroll: ScrollSaveSchema;
+    ui: UISchema;
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
-    // async
+    // Асинхронные редюсеры
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
-    articleDetials?: ArticleDetailSchema;
-    addNewComment?: AddNewCommentSchema;
+    articleDetails?: ArticleDetailsSchema;
+    addCommentForm?: AddCommentFormSchema;
     articlesPage?: ArticlesPageSchema;
     articleDetailsPage?: ArticleDetailsPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
-
 export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
 
 export interface ReducerManager {
@@ -41,6 +43,7 @@ export interface ReducerManager {
     reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
     add: (key: StateSchemaKey, reducer: Reducer) => void;
     remove: (key: StateSchemaKey) => void;
+    // true - вмонтирован, false - демонтирован
     getMountedReducers: () => MountedReducers;
 }
 

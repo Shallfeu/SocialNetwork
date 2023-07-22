@@ -1,10 +1,4 @@
 .BIG {
-    .textBlock {
-        max-height: 200px;
-        overflow-y: hidden;
-        margin-bottom: 16px;
-    }
-
     .views {
         margin-left: auto;
     }
@@ -18,7 +12,7 @@
         margin-left: 8px;
     }
 
-    .createdAt {
+    .date {
         margin-left: auto;
     }
 
@@ -28,7 +22,7 @@
 
     .img {
         width: 100%;
-        max-height: 300px;
+        max-height: 250px;
         object-fit: cover;
         margin: 16px 0;
     }
@@ -36,6 +30,12 @@
     .footer {
         display: flex;
         align-items: center;
+        margin-top: 16px;
+    }
+
+    .textBlock {
+        max-height: 200px;
+        overflow-y: hidden;
     }
 }
 
@@ -66,9 +66,10 @@
         position: relative;
     }
 
-    .image {
+    .img {
         width: 200px;
         height: 200px;
+        object-fit: cover;
     }
 
     .infoWrapper {
@@ -86,6 +87,11 @@
 
     .views {
         margin-left: auto;
+        margin-right: 8px;
+    }
+
+    .title {
+        margin-top: 8px;
     }
 
     .title p {

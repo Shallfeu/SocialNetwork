@@ -1,9 +1,7 @@
-export { ArticleDetailsPageAsync as ArticleDetailsPage } from './ui/ArticleDetailsPage/ArticleDetailsPage.async';
 export {
-    articleDetailsRecommendationsActions,
-    articleDetailsRecommendationsReducer,
-} from './model/slice/articleDetailsRecommendationsSlice';
+    ArticleDetailsPageAsync as ArticleDetailsPage,
+} from './ui/ArticleDetailsPage/ArticleDetailsPage.async';
 
-export { ArticleDetailsPageSchema } from './model/types/index';
-export { ArticleDetailsRecommendationsSchema } from './model/types/articleDetailsRecommendationsSchema';
-export { ArticleDetailsCommentSchema } from './model/types/articleDetailsComment';
+export { ArticleDetailsCommentsSchema } from './model/types/ArticleDetailsCommentsSchema';
+export { ArticleDetailsRecommendationsSchema } from './model/types/ArticleDetailsRecommendationsSchema';
+export { ArticleDetailsPageSchema } from './model/types';

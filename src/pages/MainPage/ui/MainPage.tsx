@@ -1,18 +1,23 @@
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { memo } from 'react';
+import { Input } from 'shared/ui/Input/Input';
+import { HStack } from 'shared/ui/Stack';
+import { ListBox } from 'shared/ui/ListBox/ListBox';
 import { Page } from 'widgets/Page/Page';
 
-import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './MainPage.module.scss';
-
-interface MainPageProps {
-    className?: string;
-}
-
-const MainPage = memo((props: MainPageProps) => {
-    const { className } = props;
+const MainPage = () => {
     const { t } = useTranslation();
-    return <Page className={classNames(cls.MainPage, {}, [className])}>123</Page>;
-});
+    const [value, setValue] = useState('');
+
+    const onChange = (val: string) => {
+        setValue(val);
+    };
+
+    return (
+        <Page>
+            {t('Главная страница')}
+        </Page>
+    );
+};
 
 export default MainPage;

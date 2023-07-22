@@ -1,6 +1,6 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/providers/ThemeProvider';
+
 import { Code } from './Code';
 
 export default {
@@ -13,14 +13,17 @@ export default {
 
 const Template: ComponentStory<typeof Code> = (args) => <Code {...args} />;
 
-export const Light = Template.bind({});
-Light.args = {
-    text:
-        'export default {\n' +
-        'title: "shared/Input",\n' +
-        'component: Input,\n' +
-        'argTypes: {\n' +
-        'backgroundColor: { control: "color" },\n' +
-        ' },\n' +
-        '} as ComponentMeta<typeof Input>;',
+export const Normal = Template.bind({});
+Normal.args = {
+    text: 'export default {\n'
+        + '    title: \'shared/Code\',\n'
+        + '    component: Code,\n'
+        + '    argTypes: {\n'
+        + '        backgroundColor: { control: \'color\' },\n'
+        + '    },\n'
+        + '} as ComponentMeta<typeof Code>;\n'
+        + '\n'
+        + 'const Template: ComponentStory<typeof Code> = (args) => <Code {...args} />;\n'
+        + '\n'
+        + 'export const Normal = Template.bind({});',
 };

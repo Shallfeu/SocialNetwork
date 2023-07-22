@@ -1,50 +1,64 @@
-import { ChangeEvent, useMemo } from 'react';
-
-import { Mods, classNames } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import { ChangeEvent, memo, useMemo } from 'react';
 import cls from './Select.module.scss';
 
-export interface SelectOption<T extends string> {
-    value: T;
+export interface SelectOption {
+    value: string;
     content: string;
 }
 
-interface SelectProps<T extends string> {
+interface SelectProps {
     className?: string;
     label?: string;
-    options?: SelectOption<T>[];
-    value?: T;
-    onChange?: (value: T) => void;
+    options?: SelectOption[];
+    value?: string;
+    onChange?: (value: string) => void;
     readonly?: boolean;
 }
 
-export const Select = <T extends string>(props: SelectProps<T>) => {
-    const { className, label, options, value, readonly, onChange } = props;
-    const mods: Mods = {};
+export const Select = memo((props: SelectProps) => {
+    const {
+        className,
+        label,
+        options,
+        onChange,
+        value,
+        readonly,
+    } = props;
 
-    const changeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-        onChange?.(e.target.value as T);
+    const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+        if (onChange) {
+            onChange(e.target.value);
+        }
     };
 
-    const optionList = useMemo(() => {
-        return options?.map((option) => (
-            <option key={option.value} className={cls.option} value={option.value}>
-                {option.content}
-            </option>
-        ));
-    }, [options]);
+    const optionsList = useMemo(() => options?.map((opt) => (
+        <option
+            className={cls.option}
+            value={opt.value}
+            key={opt.value}
+        >
+            {opt.content}
+        </option>
+    )), [options]);
+
+    const mods: Mods = {};
 
     return (
         <div className={classNames(cls.Wrapper, mods, [className])}>
-            <span className={cls.label}>{label}</span>
-
+            {label && (
+                <span className={cls.label}>
+                    {`${label}>`}
+                </span>
+            )}
             <select
                 disabled={readonly}
                 className={cls.select}
                 value={value}
-                onChange={changeHandler}
+                onChange={onChangeHandler}
             >
-                {optionList}
+                {optionsList}
             </select>
         </div>
     );
-};
+});

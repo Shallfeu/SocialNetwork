@@ -1,8 +1,8 @@
+import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
+import { Currency } from 'entities/Currency';
 import avatar from 'shared/assets/tests/storybook.jpg';
-
 import { ProfileCard } from './ProfileCard';
 
 export default {
@@ -15,16 +15,16 @@ export default {
 
 const Template: ComponentStory<typeof ProfileCard> = (args) => <ProfileCard {...args} />;
 
-export const Normal = Template.bind({});
-Normal.args = {
+export const Primary = Template.bind({});
+Primary.args = {
     data: {
-        first: '123',
-        lastname: 'Ульби',
-        age: 123,
-        currency: Currency.EUR,
-        country: Country.Armenia,
-        city: 'Moscow',
-        username: 'admin213',
+        username: 'admin',
+        age: 22,
+        country: Country.Ukraine,
+        lastname: 'ulbi tv',
+        first: 'asd',
+        city: 'asf',
+        currency: Currency.USD,
         avatar,
     },
 };
